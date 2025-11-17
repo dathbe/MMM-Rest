@@ -1,5 +1,7 @@
 # Module: MMM-Rest
 
+**PLEASE NOTE THAT THE LOCATION OF THIS REPOSITORY HAS RECENTLY CHANGED.  PLEASE UPDATE YOUR INSTALLATIONS.**
+
 The `MMM-Rest` module is a [MagicMirror²](https://github.com/MagicMirrorOrg/MagicMirror) addon.
 This module collects data via HTTP calls and displays it on your mirror in a table.
 
@@ -7,9 +9,12 @@ This module collects data via HTTP calls and displays it on your mirror in a tab
 
 ## Installation
 
-1. Navigate into your MagicMirror's `modules` folder and execute `git clone https://github.com/Tuxdiver/MMM-Rest`
-2. cd `cd MMM-Rest`
-3. Execute `npm install` to install the node dependencies.
+```sh
+cd ~/MagicMirror/modules
+git clone https://github.com/dathbe/MMM-Rest
+cd MMM-Rest
+npm ci --omit=dev
+```
 
 ## Changelog
 
@@ -18,7 +23,8 @@ This module collects data via HTTP calls and displays it on your mirror in a tab
 - 2024-03-21: added the ability to place multiple instances of the module into config files
 - 2024-03-22: Added the ability to specify and customize display of DateTime objects
 - 2024-03-22: Added the ability to transform REST results before displaying
-- 2024-05-06: Added new optional variable `forceAlign` for more customizable alignment 
+- 2024-05-06: Added new optional variable `forceAlign` for more customizable alignment
+- 2025-11-17: Repository moved to dathbe; code cleanup
 
 ## Using the module
 
