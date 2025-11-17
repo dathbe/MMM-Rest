@@ -4,7 +4,8 @@ Notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2025-11-17](https://github.com/dathbe/MMM-Rest/compare/2024-05-06...2024-11-17) - First post-transfer version
+
+## [2025-11-17](https://github.com/dathbe/MMM-Rest/compare/2024-05-06...2025-11-17) - First post-transfer version
 
 - Remove `request` dependency and replace with built-in fetch
 - Update README
