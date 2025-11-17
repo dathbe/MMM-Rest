@@ -4,6 +4,13 @@
   "description": "A module for MagicMirror² to show values from a url.",
   "main": "MMM-Rest.js",
   "author": "Dirk Melchers",
+  "contributors": [
+    "Dirk Melchers",
+    "dathbe",
+    "KristjanESPERANTO",
+    "marcuswillberg",
+    "mueller-ma"
+  ], 
   "license": "MIT",
   "repository": {
     "type": "git",
