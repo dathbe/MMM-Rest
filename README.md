@@ -1,5 +1,7 @@
 # Module: MMM-Rest
 
+**PLEASE NOTE THAT THE LOCATION OF THIS REPOSITORY HAS RECENTLY CHANGED.  PLEASE UPDATE YOUR INSTALLATIONS.**
+
 The `MMM-Rest` module is a [MagicMirror²](https://github.com/MagicMirrorOrg/MagicMirror) addon.
 This module collects data via HTTP calls and displays it on your mirror in a table.
 
@@ -7,18 +9,24 @@ This module collects data via HTTP calls and displays it on your mirror in a tab
 
 ## Installation
 
-1. Navigate into your MagicMirror's `modules` folder and execute `git clone https://github.com/Tuxdiver/MMM-Rest`
-2. cd `cd MMM-Rest`
-3. Execute `npm install` to install the node dependencies.
+```sh
+cd ~/MagicMirror/modules
+git clone https://github.com/dathbe/MMM-Rest
+cd MMM-Rest
+npm ci --omit=dev
+```
+Dependencies:
+- [sprintf-js](https://www.npmjs.com/package/sprintf-js)
 
-## Changelog
+Note: `request` dependency was removed with 2025-11-17 release.
 
-- 2016-10-27: incompatible changes: the "suffix" and "digits" parameters are removed and replaced by a "format" parameter! Please check your config!
-- 2018-02-02: added ranges to format parameter
-- 2024-03-21: added the ability to place multiple instances of the module into config files
-- 2024-03-22: Added the ability to specify and customize display of DateTime objects
-- 2024-03-22: Added the ability to transform REST results before displaying
-- 2024-05-06: Added new optional variable `forceAlign` for more customizable alignment 
+## Updating the module
+
+```sh
+cd ~/MagicMirror/modules/MMM-Rest
+git pull
+npm ci --omit=dev
+```
 
 ## Using the module
 
@@ -223,3 +231,25 @@ The following properties can be configured:
         </tr>
     </tbody>
 </table>
+
+## Contributing
+
+If you find any problems, bugs or have questions, please [open a GitHub issue](https://github.com/dathbe/MMM-Rest/issues) in this repository.
+
+Pull requests are of course also very welcome!
+
+### Code of Conduct
+
+Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
+
+### Developer commands
+
+Coming soon.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
+
+## Thank You
+
+A special thanks goes to [@Tuxdiver]([https://github.com/jclarke0000/](https://github.com/Tuxdiver)), who was the original author of this module and wrote most of the code.

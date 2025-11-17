@@ -275,9 +275,9 @@ Module.register("MMM-Rest",{
     socketNotificationReceived: function(notification, payload) {
         if (notification === 'MMM_REST_RESPONSE' && payload.tableID == JSON.stringify(this.config.sections) ) {
             this.debugmsg('received:' + notification);
-            if(payload.data && payload.data.statusCode === 200){
-                this.debugmsg("process result:"+payload.id+" data:"+payload.data.body);
-                this.processResult(payload.id, payload.data.body);
+            if(payload.data){
+                this.debugmsg("process result:"+payload.id+" data:"+payload.data);
+                this.processResult(payload.id, payload.data);
             }
         }
     },

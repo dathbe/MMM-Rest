@@ -4,31 +4,36 @@
  * By Dirk Melchers 
  * MIT Licensed.
  */
-var NodeHelper = require('node_helper');
-var request = require('request');
+
+const Log = require('logger')
+const NodeHelper = require('node_helper');
 
 module.exports = NodeHelper.create({
-    start: function () {
-        console.log(this.name + ' helper started ...');
-    },
+  start: function () {
+      console.log(this.name + ' helper started ...');
+  },
 
-    socketNotificationReceived: function(notification, payload) {
-        if (notification === 'MMM_REST_REQUEST') {
-            var that = this;
-            request({
-                url: payload.url,
-                method: 'GET'
-            }, function(error, response, body) {
-                // console.log("MMM_REST response:");
-                if (!error && response.statusCode == 200) {
-                    // console.log("send notification: "+payload.id);
-                    that.sendSocketNotification('MMM_REST_RESPONSE', {
-                        id: payload.id,
-                        data: response,
-                        tableID: payload.tableID
-                    });
-                }
-            });
-        }
+  async getData(payload) {
+    try {
+      const url = payload.url
+      const response = await fetch(url, {
+      method: 'GET',
+      })
+      const data = await response.text()
+      this.sendSocketNotification('MMM_REST_RESPONSE', {
+        id: payload.id,
+        data: data,
+        tableID: payload.tableID
+      });
     }
+    catch (error) {
+      Log.error('[MMM-Rest] Could not load data.', error)
+    }
+  },
+
+  socketNotificationReceived: function(notification, payload) {
+    if (notification === 'MMM_REST_REQUEST') {
+      this.getData(payload)
+    }
+  }
 });
