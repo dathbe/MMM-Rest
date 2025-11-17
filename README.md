@@ -231,6 +231,35 @@ The following properties can be configured:
     </tbody>
 </table>
 
+## Contributing
+
+If you find any problems, bugs or have questions, please [open a GitHub issue](https://github.com/dathbe/MMM-Rest/issues) in this repository.
+
+Pull requests are of course also very welcome!
+
+### Code of Conduct
+
+Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
+
+### Developer commands
+
+You will need to first install the dev dependencies:
+
+```bash
+cd ~/MagicMirror/modules/MMM-MyScoreboard
+npm ci
+```
+
+- `node --run lint` - Run linting checks.
+- `node --run lint:fix` - Fix automatically fixable linting errors.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
+
+## Thank You
+
+A special thanks goes to [@Tuxdiver]([https://github.com/jclarke0000/](https://github.com/Tuxdiver)), who was the original author of this module and wrote most of the code.
 
 ## Changelog
 
