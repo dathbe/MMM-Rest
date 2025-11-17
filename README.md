@@ -252,13 +252,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) f
 ## Thank You
 
 A special thanks goes to [@Tuxdiver]([https://github.com/jclarke0000/](https://github.com/Tuxdiver)), who was the original author of this module and wrote most of the code.
-
-## Changelog
-
-- 2016-10-27: incompatible changes: the "suffix" and "digits" parameters are removed and replaced by a "format" parameter! Please check your config!
-- 2018-02-02: added ranges to format parameter
-- 2024-03-21: added the ability to place multiple instances of the module into config files
-- 2024-03-22: Added the ability to specify and customize display of DateTime objects
-- 2024-03-22: Added the ability to transform REST results before displaying
-- 2024-05-06: Added new optional variable `forceAlign` for more customizable alignment
-- 2025-11-17: Repository moved to dathbe; code cleanup
