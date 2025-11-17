@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Update README
 - Add CHANGELOG
 - Add CODE_OF_CONDUCT
+- Style tweaks to LICENSE
 
 ## [2024-05-06](https://github.com/dathbe/MMM-Rest/releases/tag/2024-05-06)
 
