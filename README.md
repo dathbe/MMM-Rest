@@ -17,7 +17,8 @@ npm ci --omit=dev
 ```
 Dependencies:
 - [sprintf-js](https://www.npmjs.com/package/sprintf-js)
-- [request](https://www.npmjs.com/package/request) (deprecated; will be removed in a future release)
+
+Note: `request` dependency was removed with 2025-11-17 release.
 
 ## Updating the module
 

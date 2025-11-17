@@ -1,17 +1,16 @@
 {
   "name": "mmm-rest",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A module for MagicMirror² to show values from a url.",
   "main": "MMM-Rest.js",
   "author": "Dirk Melchers",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Tuxdiver/MMM-Rest.git"
+    "url": "git+https://github.com/dathbe/MMM-Rest.git"
   },
   "dependencies": {
-    "sprintf-js": "",
-    "request": ""
+    "sprintf-js": ""
   },
   "keywords": [
     "MagicMirror",
