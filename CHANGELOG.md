@@ -4,7 +4,7 @@ Notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## ## [2025-XX-XX](https://github.com/dathbe/MMM-Rest/compare/2025-11-17...2025-XX-XX)
+## [2025-XX-XX](https://github.com/dathbe/MMM-Rest/compare/2025-11-17...2025-XX-XX)
 
 - Update README
 - Add contnributors to package.json
