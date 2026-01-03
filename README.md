@@ -33,79 +33,77 @@ npm ci --omit=dev
 To use this module, add it to the modules array in the `config/config.js` file:
 
 ````javascript
-modules: [
-    {
-        module: 'MMM-Rest',
-        position: 'bottom_right',    // This can be any of the regions.
-                                     // Best results in one of the side regions like: top_left
-        config: {
-                debug: false,
-		forceAlign: false,
-		mappings: {
-                    on_off: {
-                        true: 'on',
-                        false: 'off',
-                    },
-                    temperature: {
-                        1: 'cold',
-                        2: 'warm',
-                        3: 'HOT',
-                    },
-                },
-                sections: [
-                {
-                    format: '%.1f<span class="wi wi-celsius"></span>',
-                    url: 'https://www.dirk-melchers.de/echo.php?text=22.54',
-                },
-                {
-                    format: [
-                        { range: [, 10], format: '<span style="color:green">%d</span>'},
-                        { range: [10, 20], format: '<span style="color:yellow">%d</span>'},
-                        { range: [30, ], format: '<span style="color:red">%d</span>'},
-                        { string: 'HOT', format: '<span style="color:red">%d</span>'},
-                        { format: '%d'}
-                    ],
-                    url: 'https://www.dirk-melchers.de/echo.php?text=59.1',
-                },
-                {
-                    format: '%s',
-                    mapping: 'temperature',
-                    url: 'https://www.dirk-melchers.de/echo.php?text=2',
-                },
-                {
-                    format: '%d<span class="wi wi-humidity"></span>',
-                    url: 'https://www.dirk-melchers.de/echo.php?text=62.1',
-                },
-                {
-                    format: 'Lights %s',
-                    mapping: 'on_off',
-                    url: 'https://www.dirk-melchers.de/echo.php?text=true',
-                },
-		{
-                    format: [
-                        { dateOptions: { weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true }, format: '<span style="color:green">%s</span>'},
-                    ],
-                    url: 'https://www.dirk-melchers.de/echo.php?text=2024-03-22T00:11:05.000+0000',
-                },
-                {
-                    format: [
-                        { range: [, 1000], format: '<span style="color:green">%d W</span>'},
-                        { range: [1000, 1000000], format: '%.1f kW', transform: 'value/1000'}
-                        { format: '%.1f MW', transform: 'value/1000000'}
-                    ],
-                    url: 'https://www.dirk-melchers.de/echo.php?text=10005',
-                },
-            ],
-            output: [
-                ['Livingroom','@1','@2'],
-                ['Kitchen','@3','@4'],
-                ['Fridge','@5'],
-                ['Last Updated','@6'],
-                ['Solar Production','@7'],
-            ],
-        },
-    }
-]
+{
+	module: 'MMM-Rest',
+	position: 'bottom_right',    // This can be any of the regions.
+								 // Best results in one of the side regions like: top_left
+	config: {
+			debug: false,
+	forceAlign: false,
+	mappings: {
+				on_off: {
+					true: 'on',
+					false: 'off',
+				},
+				temperature: {
+					1: 'cold',
+					2: 'warm',
+					3: 'HOT',
+				},
+			},
+			sections: [
+			{
+				format: '%.1f<span class="wi wi-celsius"></span>',
+				url: 'https://www.dirk-melchers.de/echo.php?text=22.54',
+			},
+			{
+				format: [
+					{ range: [, 10], format: '<span style="color:green">%d</span>'},
+					{ range: [10, 20], format: '<span style="color:yellow">%d</span>'},
+					{ range: [30, ], format: '<span style="color:red">%d</span>'},
+					{ string: 'HOT', format: '<span style="color:red">%d</span>'},
+					{ format: '%d'}
+				],
+				url: 'https://www.dirk-melchers.de/echo.php?text=59.1',
+			},
+			{
+				format: '%s',
+				mapping: 'temperature',
+				url: 'https://www.dirk-melchers.de/echo.php?text=2',
+			},
+			{
+				format: '%d<span class="wi wi-humidity"></span>',
+				url: 'https://www.dirk-melchers.de/echo.php?text=62.1',
+			},
+			{
+				format: 'Lights %s',
+				mapping: 'on_off',
+				url: 'https://www.dirk-melchers.de/echo.php?text=true',
+			},
+	{
+				format: [
+					{ dateOptions: { weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true }, format: '<span style="color:green">%s</span>'},
+				],
+				url: 'https://www.dirk-melchers.de/echo.php?text=2024-03-22T00:11:05.000+0000',
+			},
+			{
+				format: [
+					{ range: [, 1000], format: '<span style="color:green">%d W</span>'},
+					{ range: [1000, 1000000], format: '%.1f kW', transform: 'value/1000'}
+					{ format: '%.1f MW', transform: 'value/1000000'}
+				],
+				url: 'https://www.dirk-melchers.de/echo.php?text=10005',
+			},
+		],
+		output: [
+			['Livingroom','@1','@2'],
+			['Kitchen','@3','@4'],
+			['Fridge','@5'],
+			['Last Updated','@6'],
+			['Solar Production','@7'],
+		],
+	},
+}
 ````
 
 ## Configuration options
