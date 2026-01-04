@@ -20,7 +20,7 @@ module.exports = NodeHelper.create({
         method: 'GET',
       })
       var data = await response.text()
-      data = data.replace(/\n+$/, "")
+      data = data.replace(/\n+$/, '')
       this.sendSocketNotification('MMM_REST_RESPONSE', {
         id: payload.id,
         data: data,
