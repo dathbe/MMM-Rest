@@ -58,11 +58,11 @@ To use this module, add it to the modules array in the `config/config.js` file:
       },
       {
         format: [
-          { range: [0 , 10], format: '<span style="color:green">%d&deg;</span>'},
-          { range: [10, 20], format: '<span style="color:yellow">%d&deg;</span>'},
-          { range: [30, ], format: '<span style="color:red">%d&deg;</span>'},
-          { string: 'HOT', format: '<span style="color:red">%d&deg;</span>'},
-          { format: '%d&deg;'}
+          { range: [0 , 10], format: '<span style="color:green">%d&percnt;</span>'},
+          { range: [10, 20], format: '<span style="color:yellow">%d&percnt;</span>'},
+          { range: [30, ], format: '<span style="color:red">%d&percnt;</span>'},
+          { string: 'HOT', format: '<span style="color:red">%d&percnt;</span>'},
+          { format: '%d&percnt;'}
         ],
         url: 'https://raw.githubusercontent.com/dathbe/MMM-Rest/refs/heads/main/demo/float591',
       },
@@ -96,11 +96,11 @@ To use this module, add it to the modules array in the `config/config.js` file:
       },
     ],
     output: [
-      ['Livingroom','@1','@2'],
+      ['Living Room','@1','@2'],
       ['Kitchen','@3','@4'],
-      ['Fridge','@5'],
+      ['Fridge','','@5'],
       ['Last Updated','@6'],
-      ['Solar Production','@7'],
+      ['Solar Production','','@7'],
     ],
   },
 }
