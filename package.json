@@ -1,27 +1,38 @@
 {
   "name": "mmm-rest",
-  "version": "2.0.0",
-  "description": "A module for MagicMirror² to show values from a url.",
-  "main": "MMM-Rest.js",
-  "author": "Dirk Melchers",
-  "contributors": [
-    "Dirk Melchers",
-    "dathbe",
-    "KristjanESPERANTO",
-    "marcuswillberg",
-    "mueller-ma"
-  ], 
-  "license": "MIT",
+  "type": "commonjs",
+  "description": "A module for MagicMirror² to show values from a url",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dathbe/MMM-Rest.git"
   },
-  "dependencies": {
-    "sprintf-js": ""
-  },
+  "main": "MMM-Rest.js",
   "keywords": [
     "MagicMirror",
     "rest",
     "API"
-  ]
+  ],
+  "author": "Dirk Melchers",
+  "contributors": [
+    {"name": "Dirk Melchers"},
+    {"name": "dathbe"},
+    {"name": "KristjanESPERANTO"},
+    {"name": "marcuswillberg"},
+    {"name": "mueller-ma"}
+  ], 
+  "license": "MIT",
+  "dependencies": {
+    "sprintf-js": "1.1.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@stylistic/eslint-plugin": "^5.6.1",
+    "eslint": "^9.39.2",
+    "globals": "^17.0.0"
+  },
+  "scripts": {
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "test": "node --run lint"
+  }
 }
