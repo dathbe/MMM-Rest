@@ -32,10 +32,10 @@ npm ci --omit=dev
 
 To use this module, add it to the modules array in the `config/config.js` file:
 
-```javascript
+```js
 {
   module: 'MMM-Rest',
-  position: 'bottom_right', // This can be any of the regions.
+  position: 'top_left', // This can be any of the regions.
                             // Best results in one of the side regions like: top_left
   config: {
     debug: false,
@@ -53,54 +53,54 @@ To use this module, add it to the modules array in the `config/config.js` file:
     },
     sections: [
       {
-        format: '%.1f<span class="wi wi-celsius"></span>',
-        url: 'https://www.dirk-melchers.de/echo.php?text=22.54',
+        format: '%.1f&deg;<span class="wi wi-celsius"></span>',
+        url: 'https://raw.githubusercontent.com/dathbe/MMM-Rest/refs/heads/main/demo/float2254',
       },
       {
         format: [
-          { range: [, 10], format: '<span style="color:green">%d</span>'},
-          { range: [10, 20], format: '<span style="color:yellow">%d</span>'},
-          { range: [30, ], format: '<span style="color:red">%d</span>'},
-          { string: 'HOT', format: '<span style="color:red">%d</span>'},
-          { format: '%d'}
+          { range: [0 , 10], format: '<span style="color:green">%d&percnt;</span>'},
+          { range: [10, 20], format: '<span style="color:yellow">%d&percnt;</span>'},
+          { range: [30, ], format: '<span style="color:red">%d&percnt;</span>'},
+          { string: 'HOT', format: '<span style="color:red">%d&percnt;</span>'},
+          { format: '%d&percnt;'}
         ],
-        url: 'https://www.dirk-melchers.de/echo.php?text=59.1',
+        url: 'https://raw.githubusercontent.com/dathbe/MMM-Rest/refs/heads/main/demo/float591',
       },
       {
         format: '%s',
         mapping: 'temperature',
-        url: 'https://www.dirk-melchers.de/echo.php?text=2',
+        url: 'https://raw.githubusercontent.com/dathbe/MMM-Rest/refs/heads/main/demo/int2',
       },
       {
-        format: '%d<span class="wi wi-humidity"></span>',
-        url: 'https://www.dirk-melchers.de/echo.php?text=62.1',
+        format: '%d&percnt;<span class="wi wi-humidity"></span>',
+        url: 'https://raw.githubusercontent.com/dathbe/MMM-Rest/refs/heads/main/demo/float621',
       },
       {
         format: 'Lights %s',
         mapping: 'on_off',
-        url: 'https://www.dirk-melchers.de/echo.php?text=true',
+        url: 'https://raw.githubusercontent.com/dathbe/MMM-Rest/refs/heads/main/demo/stringtrue',
       },
       {
         format: [
           { dateOptions: { weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true }, format: '<span style="color:green">%s</span>'},
         ],
-        url: 'https://www.dirk-melchers.de/echo.php?text=2024-03-22T00:11:05.000+0000',
+        url: 'https://raw.githubusercontent.com/dathbe/MMM-Rest/refs/heads/main/demo/date',
       },
       {
         format: [
-          { range: [, 1000], format: '<span style="color:green">%d W</span>'},
-          { range: [1000, 1000000], format: '%.1f kW', transform: 'value/1000'}
+          { range: [0, 1000], format: '<span style="color:green">%d W</span>'},
+          { range: [1000, 1000000], format: '%.1f kW', transform: 'value/1000'},
           { format: '%.1f MW', transform: 'value/1000000'}
         ],
-        url: 'https://www.dirk-melchers.de/echo.php?text=10005',
+        url: 'https://raw.githubusercontent.com/dathbe/MMM-Rest/refs/heads/main/demo/int10005',
       },
     ],
     output: [
-      ['Livingroom','@1','@2'],
+      ['Living Room','@1','@2'],
       ['Kitchen','@3','@4'],
-      ['Fridge','@5'],
+      ['Fridge','','@5'],
       ['Last Updated','@6'],
-      ['Solar Production','@7'],
+      ['Solar Production','','@7'],
     ],
   },
 }

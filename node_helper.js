@@ -19,7 +19,8 @@ module.exports = NodeHelper.create({
       const response = await fetch(url, {
         method: 'GET',
       })
-      const data = await response.text()
+      var data = await response.text()
+      data = data.replace(/\n+$/, '')
       this.sendSocketNotification('MMM_REST_RESPONSE', {
         id: payload.id,
         data: data,
