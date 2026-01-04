@@ -32,7 +32,7 @@ npm ci --omit=dev
 
 To use this module, add it to the modules array in the `config/config.js` file:
 
-```javascript
+```js
 {
   module: 'MMM-Rest',
   position: 'bottom_right', // This can be any of the regions.
