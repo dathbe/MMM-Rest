@@ -4,6 +4,10 @@ Notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2026-01-XX](https://github.com/dathbe/MMM-Rest/compare/2026-01-03...2026-01-XX)
+
+- Add devDependencies for ESLint
+
 ## [2026-01-03](https://github.com/dathbe/MMM-Rest/compare/2025-11-17...2026-01-03)
 
 - Update README
