@@ -1,5 +1,3 @@
-/* global Module */
-
 /* MagicMirror²
  * Module: MMM-Rest
  *
@@ -48,7 +46,7 @@ Module.register('MMM-Rest', {
 
   // Define start sequence.
   start: function () {
-    Log.info('Starting module: ' + this.name)
+    Log.log(`Starting module: ${this.name}`)
 
     this.debugVar = ''
 
@@ -194,7 +192,7 @@ Module.register('MMM-Rest', {
             // get mapping
             var mapping_name = self.sections[section_id].mapping
             if (mapping_name) {
-              mapping = self.mappings[mapping_name]
+              const mapping = self.mappings[mapping_name]
               if (mapping) {
                 value = mapping[value]
               }
@@ -202,7 +200,7 @@ Module.register('MMM-Rest', {
 
             // format column using sprintf
             if (format.search(/%.\df|%f/i) > 1 || format.search('%d') > -1) {
-              col_text = sprintf(format, parseFloat(value))
+              var col_text = sprintf(format, parseFloat(value))
             }
             else if (options != false) {
               value = new Date(value).toLocaleString(config.locale, options)

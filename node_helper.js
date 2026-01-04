@@ -10,7 +10,7 @@ const NodeHelper = require('node_helper')
 
 module.exports = NodeHelper.create({
   start: function () {
-    console.log(this.name + ' helper started ...')
+    Log.log('Starting node_helper for: ' + this.name)
   },
 
   async getData(payload) {
