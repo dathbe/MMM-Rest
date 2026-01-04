@@ -4,9 +4,10 @@ Notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2026-01-XX](https://github.com/dathbe/MMM-Rest/compare/2026-01-03...2026-01-XX)
+## [2026-01-04](https://github.com/dathbe/MMM-Rest/compare/2026-01-03...2026-01-04)
 
 - Update README
+- Better handling of REST responses with `\n` at the end of file
 - Add devDependencies for ESLint
 - Add Dependabot checks
 - Lint
