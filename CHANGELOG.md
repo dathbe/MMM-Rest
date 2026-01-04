@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [2026-01-XX](https://github.com/dathbe/MMM-Rest/compare/2026-01-03...2026-01-XX)
 
+- Update README
 - Add devDependencies for ESLint
 - Add Dependabot checks
 - Lint
