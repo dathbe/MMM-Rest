@@ -17,8 +17,6 @@ Module.register('MMM-Rest', {
     allowSelfSignedCerts: false,
     sections: [
       {
-        suffix: '',
-        digits: 0,
         url: 'https://raw.githubusercontent.com/dathbe/MMM-Rest/refs/heads/main/demo/int42',
       },
     ],
@@ -121,9 +119,10 @@ Module.register('MMM-Rest', {
             var format = self.sections[section_id].format
             // fallback for old config
             if (!format) {
-              var digits = self.sections[section_id].digits
+              /* var digits = self.sections[section_id].digits
               var suffix = self.sections[section_id].suffix
-              format = '%.' + digits + 'f' + suffix
+              format = '%.' + digits + 'f' + suffix */
+              format = '%s'
             }
             else if (format.constructor === Array) {
               var result = ''
