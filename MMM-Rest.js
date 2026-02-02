@@ -19,7 +19,7 @@ Module.register('MMM-Rest', {
       {
         suffix: '',
         digits: 0,
-        url: 'http://www.dirk-melchers.de/echo.php?text=42',
+        url: 'https://raw.githubusercontent.com/dathbe/MMM-Rest/refs/heads/main/demo/int42',
       },
     ],
     output: [
