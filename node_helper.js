@@ -17,10 +17,11 @@ module.exports = NodeHelper.create({
   async getData(payload) {
     try {
       if (payload.allowSelfSignedCerts == true && payload.url.startsWith('https')) {
-        var agent = new undici.Agent({ connect: {rejectUnauthorized: false,},})
+        var agent = new undici.Agent({ connect: { rejectUnauthorized: false } })
         Log.debug(`${payload.url} - insecure`)
-      } else {
-        agent = new undici.Agent({ connect: {rejectUnauthorized: true,},})
+      }
+      else {
+        agent = new undici.Agent({ connect: { rejectUnauthorized: true } })
         Log.debug(`${payload.url} - secure`)
       }
       const url = payload.url
