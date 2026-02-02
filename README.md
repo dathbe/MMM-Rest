@@ -125,22 +125,19 @@ The following properties can be configured:
 
 Sections consist of up to three elements:  `url`, `format`, and `mapping`.
 
+#### Sections > URL
 `url` (required) is the url to call.  It has to return a single piece of data like a REST API would (though it does not necessarily need to be a REST API; the example config uses text files).
 
-`format` (optional) defines the format to use for displaying the resulting data.  Examples of the various `format` options are included in the example config above.
-- Option 1, string - Use `sprintf()` formatting.  Formatting options described [here](https://www.npmjs.com/package/sprintf-js). Example:
+#### Sections > Format
+`format` (optional) defines the format to use for displaying the resulting data.  Examples of the various `format` options are included in the example config above.  `format` can either be a string or an array of dicts.
+
+If `format` is a string (the simplest method of defining a format), use `sprintf()` formatting, which is described [here](https://www.npmjs.com/package/sprintf-js). Example:
 ```js
 format: '%s',
 ```
-- Option 2, datetime - Use an array of a single dict with the "dateOptions" key to specify that the expected
-value is an ISO 8601 DateTime object (may work for other date formats as well, as long as
-the javascript function `new Date()` takes that format). Formatting options described [here](https://stackoverflow.com/questions/3552461/how-do-i-format-a-date-in-javascript). Example:
-```js
-format: [
-  { dateOptions: { weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true }, format: '<span style="color:green">%s</span>'},
-],
-```
-- Option 3, match criteria - Use an array of dicts. The array is processed from top to bottom and first match will be used.  Each dict can be a "range" or a "string" to match. The last entry could be a default without "range" or "string". Leaving one value of the range empty means "ignore this bound". Example:
+For more complicated `format` configuation, you can either define ranges or options for datetime objects.  
+
+For ranges, the array is processed from top to bottom and first match will be used.  Each dict can be a "range" or a "string" to match. The last entry could be a default without "range" or "string". Leaving one value of the range empty means "ignore this bound". You may also add a `transform` function to convert the value before displaying it. Use a string that is a common mathematical function with the value of the raw REST data is `value`. E.g., `value/1000` will divide the raw value by 1000 before displaying. Useful for converting units. Note: transform happens after any range is matched. Example with ranges so that values less than 1000 are displayed in green and in watts, values between 1000 and 1000000 are converted to kilowatts, and larger values are converted to megawatts:
 ```js
 format: [
   { range: [0, 1000], format: '<span style="color:green">%d W</span>'},
@@ -149,10 +146,16 @@ format: [
 ],
 ```
 
-You may also add a `transform` function to convert the value before displaying it. Use a string that is a common mathematical function with the value of the raw REST data is `value`. E.g., `value/1000` will divide the raw value by 1000 before displaying. Useful for converting units. Note: transform happens after any range is matched.
+For datetime objects, use the "dateOptions" key to specify that the expected value is an ISO 8601 DateTime object (may work for other date formats as well, as long as the javascript function `new Date()` takes that format). Formatting options described [here](https://stackoverflow.com/questions/3552461/how-do-i-format-a-date-in-javascript). Example:
+```js
+format: [
+  { dateOptions: { weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true }, format: '<span style="color:green">%s</span>'},
+],
+```
 
 Omitting a `format` will display the raw string value of the data returned by the `url`.
 
+#### Sections > Mapping
 `mapping` (optional) is the desired mapping key from the `mappings` config option (see below).  Example usage is shown above in the example config.
 
 ### Mappings
