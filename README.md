@@ -112,8 +112,8 @@ The following properties can be configured:
 
 | Option               | Description
 | -------              | -------
-| sections             | Defines the REST endpoints to connect to (see below for more information).<br><br>**Type:** `array` of `hash`es<br>**Default value:** `[ { suffix: '', digits: 0, url: 'https://raw.githubusercontent.com/dathbe/MMM-Rest/refs/heads/main/demo/int42', }, ]`
-| mappings             | Allows mapping returned values to other values (see below for more information).<br><br>**Type:** `hash` of `hash`es<br>**Default value:** `null`
+| sections             | Defines the REST endpoints to connect to (see below for more information).<br><br>**Type:** `array` of `dict`s<br>**Default value:** `[ { url: 'https://raw.githubusercontent.com/dathbe/MMM-Rest/refs/heads/main/demo/int42', }, ]`
+| mappings             | Allows mapping returned values to other values (see below for more information).<br><br>**Type:** `dict` of `dict`s<br>**Default value:** `null`
 | output               | Formats the output table for the display. A cell containing an `@` followed by a number represents the section id (starting with 1) of the REST urls defined in `sections`<br><br>**Type:** 2-dimensional `array` (rows and columns)<br>**Default value:** `[ ['The answer', '@1'], ]`
 | updateInterval       | How often the module refreshes.<br><br>**Type:** `int` (milliseconds)<br>**Default value:** `60 * 1000` (60 seconds)
 | initialLoadDelay     | How long to wait for the first load.<br><br>**Type:** `int` (milliseconds)<br>**Default value:** `0`
@@ -123,131 +123,30 @@ The following properties can be configured:
 
 ### Sections
 
+Sections consist of up to three elements:  `url`, `format`, and `mapping`.
 
+`url` (required) is the url to call.  It has to return a single piece of data like a REST API would (though it does not necessarily need to be a REST API; the example config uses text files).
+
+`format` (required) defines the format to use for displaying the resulting data.  Examples of the various `format` options are included in the example config above.
+- Option 1, string - Use `sprintf()` formatting.  Formatting options described [here](https://www.npmjs.com/package/sprintf-js). 
+- Option 2, datetime - Use an array of a single dict with the "dateOptions" key to specify that the expected
+value is an ISO 8601 DateTime object (may work for other date formats as well, as long as
+the javascript function `new Date()` takes that format). Formatting options described [here](https://stackoverflow.com/questions/3552461/how-do-i-format-a-date-in-javascript). 
+- Option 3, match criteria - Use an array of dicts. The array is processed from top to bottom and first match will be used.  Each dict can be a "range" or a "string" to match. The last entry could be a default without "range" or "string". Leaving one value of the range empty means "ignore this bound".
+
+You may also add a `transform` function to convert the value before displaying it. Use a string that is a common mathematical function with the value of the raw REST data is `value`. E.g., `value/1000` will divide the raw value by 1000 before displaying. Useful for converting units. Note: transform happens after any range is matched.
+
+Omitting a `format` will display the raw value of the data returned by the `url`.
+
+`mapping` (optional) is the desired mapping key from the `mappings` config option (see below).  Example usage is shown above in the example config.
 
 ### Mappings
 
+Mappings are a `dict` of `dict`s for the mapping of raw values to other values.  They consist of two elements: a name for the mapping, and a key/value pair.  Examples of `mappings` usage are shown in the example config above.
 
+The name of the mapping can be any string.  You will use it in the `mapping` option under `sections`, described above.
 
-<table width="100%">
-    <!-- why, markdown... -->
-    <thead>
-        <tr>
-            <th>Option</th>
-            <th width="100%">Description</th>
-        </tr>
-    <thead>
-    <tbody>
-        <tr>
-            <td valign="top"><code>sections</code></td>
-            <td>sections is an array of hashes for the REST endpoints to connect to<br>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Option</th>
-                        <th width="100%">Description</th>
-                    </tr>
-                <thead>
-                <tbody>
-                    <tr>
-                        <td valign="top"><code>format</code></td>
-                        <td>- If it is a string: sprintf() format<br>
-                        - Could also be an array of hashes. The array is processed from top to bottom and first match wins. 
-				<br>The last entry could be a default without "range". Leaving one value of the range empty means 
-				<br>"ignore this bound".<br>
-                        - You could use "string" instead of "range" to match the value against the parameter of the string.<br>
-			- Finally, you could use "dateOptions" instead of "range" or "string" to specify that the expected 
-				<br>value is an ISO 8601 DateTime object (may work for other date formats as well, as long as 
-				<br>the javascript function `new Date()` takes that format), and describe what format you want the 
-				<br>date displayed in.  Formatting options described here 
-				<br>https://stackoverflow.com/questions/3552461/how-do-i-format-a-date-in-javascript. <br> 
-			- You may also add a `transform` function to convert the value before displaying it.  Use a string that 
-				<br>is a common mathematical function with the value of the raw REST data is `value`.  E.g., `value/1000` 
-				<br>will divide the raw value by 1000 before displaying.  Useful for converting units.  Note:  transform 
-				<br>happens <i>after</i> any range is matched.
-                        </td>
-                    </tr>
-                    <tr>
-                        <td valign="top"><code>mapping</code></td>
-                        <td>Map the value againt a defined mapping</td>
-                    </tr>
-                    <tr>
-                        <td valign="top"><code>url</code></td>
-                        <td>The url to call. It has to return a single integer / floating point value</td>
-                    </tr>
-                </tbody>
-            </table>
-            </td>
-        </tr>
-        <tr>
-            <td valign="top"><code>mappings</code></td>
-            <td>mappings is an hash of hashes for the mapping of values to other values<br>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Option</th>
-                        <th width="100%">Description</th>
-                    </tr>
-                <thead>
-                <tbody>
-                    <tr>
-                        <td valign="top"><code>NAME_OF_MAPPING</code></td>
-                        <td>Name of mapping will be referenced by sections -> mapping</td>
-                    </tr>
-                    <tr>
-                        <td valign="top"><code>values</code></td>
-                        <td>hash of key / values to map from / to</td>
-                    </tr>
-                </tbody>
-            </table>
-            </td>
-        </tr>
-        <tr>
-            <td valign="top"><code>output</code></td>
-            <td>control the output table for the display.
-            Has to be a 2-dimensional array representing the rows and the columns <br>of the output
-            <br>A cell containing a '@' followed by a number represents the section id (starting by 1) of the REST Urls
-            </td>
-        </tr>
-        <tr>
-            <td valign="top"><code>updateInterval</code></td>
-            <td>How often this refreshes<br>
-                <br><b>Example:</b> <code>60000</code>
-                <br><b>Default value:</b> <code>60000</code>
-            </td>
-        </tr>
-        <tr>
-            <td valign="top"><code>initialLoadDelay</code></td>
-            <td>How long to wait for the first load<br>
-                <br><b>Example:</b> <code>60000</code>
-                <br><b>Default value:</b> <code>0</code>
-            </td>
-        </tr>
-        <tr>
-            <td valign="top"><code>animationSpeed</code></td>
-            <td>Fadeover effect for dom updates<br>
-                <br><b>Example:</b> <code>1000</code>
-                <br><b>Default value:</b> <code>2000</code>
-            </td>
-        </tr>
-	<tr>
-            <td valign="top"><code>forceAlign</code></td>
-            <td>Boolean.  Describes the alignment behavior of the table<br>
-		<code>false</code> will align description cells to the left and variable cells (e.g., <code>@1</code>) to the right.
-		<br> <code>true</code> will align all cells in the leftmost column to the left and all other cells to the right.
-		<br>
-                <br><b>Default value:</b> <code>false</code>
-            </td>
-        </tr>
-        <tr>
-            <td valign="top"><code>debug</code></td>
-            <td>Log messages to Log.info / console<br>
-                <br><b>Example:</b> <code>true</code>
-                <br><b>Default value:</b> <code>false</code>
-            </td>
-        </tr>
-    </tbody>
-</table>
+The key/value pairs describe what will be mapped from (key) and to (value).  For example, the pair `1: 'cold'` will take any `1` returned from a url and covert it to `'cold'` before displaying it.
 
 ## Contributing
 
