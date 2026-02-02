@@ -110,10 +110,24 @@ To use this module, add it to the modules array in the `config/config.js` file:
 
 The following properties can be configured:
 
-| Option           | Description
-| -------          | -------
-| sections         | An array of hashes for the REST endpoints to connect to (see below).<br><br>**Type:** `array` of hashes<br>**Default value:** `[ { suffix: '', digits: 0, url: 'https://raw.githubusercontent.com/dathbe/MMM-Rest/refs/heads/main/demo/int2', }, ]`
-| sections         | An array of hashes for the REST endpoints to connect to (see below).<br><br>**Type:** `array` of hashes<br>**Default value:** `''`
+| Option               | Description
+| -------              | -------
+| sections             | Defines the REST endpoints to connect to (see below for more information).<br><br>**Type:** `array` of `hash`es<br>**Default value:** `[ { suffix: '', digits: 0, url: 'https://raw.githubusercontent.com/dathbe/MMM-Rest/refs/heads/main/demo/int42', }, ]`
+| mappings             | Allows mapping returned values to other values (see below for more information).<br><br>**Type:** `hash` of `hash`es<br>**Default value:** `null`
+| output               | Formats the output table for the display. A cell containing an `@` followed by a number represents the section id (starting with 1) of the REST urls defined in `sections`<br><br>**Type:** 2-dimensional `array` (rows and columns)<br>**Default value:** `[ ['The answer', '@1'], ]`
+| updateInterval       | How often the module refreshes.<br><br>**Type:** `int` (milliseconds)<br>**Default value:** `60 * 1000` (60 seconds)
+| initialLoadDelay     | How long to wait for the first load.<br><br>**Type:** `int` (milliseconds)<br>**Default value:** `0`
+| animationSpeed       | Duration of fadeover effect for dom updates.<br><br>**Type:** `int` (milliseconds)<br>**Default value:** `2 * 1000` (2 seconds)
+| forceAlign           | Describes the alignment behavior of the table.<br>`false` will align description cells to the left and variable cells (e.g., @1) to the right.<br>`true` will align all cells in the leftmost column to the left and all other cells to the right.<br><br>**Type:** `boolean`<br>**Default value:** `false`
+| allowSelfSignedCerts | Allows insecure fetching of urls with untrusted SSL certificates (e.g., self-signed certificates). *Use with caution and only if you know what you are doing.*<br><br>**Type:** `boolean`<br>**Default value:** `false`
+
+### Sections
+
+
+
+### Mappings
+
+
 
 <table width="100%">
     <!-- why, markdown... -->
