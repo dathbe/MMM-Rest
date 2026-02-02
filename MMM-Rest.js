@@ -14,6 +14,7 @@ Module.register('MMM-Rest', {
     animationSpeed: 2 * 1000,
     initialLoadDelay: 0,
     forceAlign: false,
+    allowSelfSignedCerts: false,
     sections: [
       {
         suffix: '',
@@ -257,6 +258,7 @@ Module.register('MMM-Rest', {
           id: id,
           url: section.url,
           tableID: JSON.stringify(this.config.sections),
+          allowSelfSignedCerts: this.config.allowSelfSignedCerts,
         },
       )
     }
