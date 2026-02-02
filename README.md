@@ -110,6 +110,10 @@ To use this module, add it to the modules array in the `config/config.js` file:
 
 The following properties can be configured:
 
+| Option           | Description
+| -------          | -------
+| sections         | An array of hashes for the REST endpoints to connect to (see below).<br><br>**Type:** `array` of hashes<br>**Default value:** `''`
+
 <table width="100%">
     <!-- why, markdown... -->
     <thead>
