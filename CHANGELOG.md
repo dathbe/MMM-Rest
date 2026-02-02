@@ -7,6 +7,8 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ## [2026-02-02](https://github.com/dathbe/MMM-Rest/compare/2026-01-04...2026-02-02)
 
 - Add ability to insecurely connect to resources with self-signed certificates using `allowSelfSignedCerts`
+- Reformat README tables
+- Update default config with working link
 
 ## [2026-01-04](https://github.com/dathbe/MMM-Rest/compare/2026-01-03...2026-01-04)
 
