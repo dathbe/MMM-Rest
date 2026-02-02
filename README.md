@@ -112,13 +112,14 @@ The following properties can be configured:
 
 | Option           | Description
 | -------          | -------
-| sections         | An array of hashes for the REST endpoints to connect to (see below).<br><br>**Type:** `array` of hashes<br>**Default value:** `[
+| sections         | An array of hashes for the REST endpoints to connect to (see below).<br><br>**Type:** `array` of hashes<br>**Default value:** ```js
+[
       {
         suffix: '',
         digits: 0,
         url: 'https://raw.githubusercontent.com/dathbe/MMM-Rest/refs/heads/main/demo/int2',
       },
-    ],`
+    ],```
 | sections         | An array of hashes for the REST endpoints to connect to (see below).<br><br>**Type:** `array` of hashes<br>**Default value:** `''`
 
 <table width="100%">
