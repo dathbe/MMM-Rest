@@ -14,11 +14,10 @@ Module.register('MMM-Rest', {
     animationSpeed: 2 * 1000,
     initialLoadDelay: 0,
     forceAlign: false,
+    allowSelfSignedCerts: false,
     sections: [
       {
-        suffix: '',
-        digits: 0,
-        url: 'http://www.dirk-melchers.de/echo.php?text=42',
+        url: 'https://raw.githubusercontent.com/dathbe/MMM-Rest/refs/heads/main/demo/int42',
       },
     ],
     output: [
@@ -120,9 +119,10 @@ Module.register('MMM-Rest', {
             var format = self.sections[section_id].format
             // fallback for old config
             if (!format) {
-              var digits = self.sections[section_id].digits
+              /* var digits = self.sections[section_id].digits
               var suffix = self.sections[section_id].suffix
-              format = '%.' + digits + 'f' + suffix
+              format = '%.' + digits + 'f' + suffix */
+              format = '%s'
             }
             else if (format.constructor === Array) {
               var result = ''
@@ -257,6 +257,7 @@ Module.register('MMM-Rest', {
           id: id,
           url: section.url,
           tableID: JSON.stringify(this.config.sections),
+          allowSelfSignedCerts: this.config.allowSelfSignedCerts,
         },
       )
     }
