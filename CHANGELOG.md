@@ -4,6 +4,10 @@ Notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2026-02-03](https://github.com/dathbe/MMM-Rest/compare/2026-02-02...2026-02-03)
+
+- Only define insecure fetch agent a single time
+
 ## [2026-02-02](https://github.com/dathbe/MMM-Rest/compare/2026-01-04...2026-02-02)
 
 - **NEW FEATURE** Add ability to insecurely connect to resources with self-signed certificates using `allowSelfSignedCerts`
