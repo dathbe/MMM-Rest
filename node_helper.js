@@ -9,7 +9,6 @@ const Log = require('logger')
 const NodeHelper = require('node_helper')
 const undici = require('undici')
 
-const secureAgent = new undici.Agent({ connect: { rejectUnauthorized: true } })
 const insecureAgent = new undici.Agent({ connect: { rejectUnauthorized: false } })
 
 module.exports = NodeHelper.create({
@@ -23,7 +22,7 @@ module.exports = NodeHelper.create({
       Log.debug(`${payload.url} - insecure`)
     }
     else {
-      agent = secureAgent
+      agent = undefined
       Log.debug(`${payload.url} - secure`)
     }
     try {
