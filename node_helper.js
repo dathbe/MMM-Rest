@@ -9,21 +9,24 @@ const Log = require('logger')
 const NodeHelper = require('node_helper')
 const undici = require('undici')
 
+const secureAgent = new undici.Agent({ connect: { rejectUnauthorized: true } })
+const insecureAgent = new undici.Agent({ connect: { rejectUnauthorized: false } })
+
 module.exports = NodeHelper.create({
   start: function () {
     Log.log('Starting node_helper for: ' + this.name)
   },
 
   async getData(payload) {
+    if (payload.allowSelfSignedCerts == true && payload.url.startsWith('https://')) {
+      var agent = insecureAgent
+      Log.debug(`${payload.url} - insecure`)
+    }
+    else {
+      agent = secureAgent
+      Log.debug(`${payload.url} - secure`)
+    }
     try {
-      if (payload.allowSelfSignedCerts == true && payload.url.startsWith('https')) {
-        var agent = new undici.Agent({ connect: { rejectUnauthorized: false } })
-        Log.debug(`${payload.url} - insecure`)
-      }
-      else {
-        agent = new undici.Agent({ connect: { rejectUnauthorized: true } })
-        Log.debug(`${payload.url} - secure`)
-      }
       const url = payload.url
       const response = await fetch(url, {
         method: 'GET',
