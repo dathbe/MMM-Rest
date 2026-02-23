@@ -2,7 +2,9 @@
 
 Notable changes to this project will be documented in this file.
 
-This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+## [2026-XX-XX](https://github.com/dathbe/MMM-Rest/compare/2026-02-03...2026-XX-XX)
+
+- Add class to `tr` elements based on returned item value (allows CSS customization to, say, hide rows with certain values)
 
 ## [2026-02-03](https://github.com/dathbe/MMM-Rest/compare/2026-02-02...2026-02-03)
 
