@@ -2,9 +2,10 @@
 
 Notable changes to this project will be documented in this file.
 
-## [2026-XX-XX](https://github.com/dathbe/MMM-Rest/compare/2026-02-03...2026-XX-XX)
+## [2026-03-04](https://github.com/dathbe/MMM-Rest/compare/2026-02-03...2026-03-04)
 
 - Add class to `tr` elements based on returned item value (allows CSS customization to, say, hide rows with certain values)
+- Update dependencies
 
 ## [2026-02-03](https://github.com/dathbe/MMM-Rest/compare/2026-02-02...2026-02-03)
 
