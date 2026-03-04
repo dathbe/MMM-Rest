@@ -113,6 +113,7 @@ Module.register('MMM-Rest', {
 
           // get value - process only if not undef
           var value = self.sectionData[section_id]
+          tr.className = value
           if (typeof value !== 'undefined') {
             // get format
             var options = false
