@@ -1,5 +1,6 @@
 {
   "name": "mmm-rest",
+  "version": "2.0.0",
   "type": "commonjs",
   "description": "A module for MagicMirror² to show values from a url",
   "repository": {
