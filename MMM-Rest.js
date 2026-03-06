@@ -136,10 +136,10 @@ Module.register('MMM-Rest', {
                   this.debugmsg('MMM-Rest: range defined: ', condition['range'])
                   var min = condition['range'][0]
                   var max = condition['range'][1]
-                  // var match = false
+                  var match = false
                   if (typeof min != 'undefined') {
                     if (parseFloat(value) >= min) {
-                      var match = true
+                      match = true
                     }
                     else {
                       match = false
@@ -160,7 +160,7 @@ Module.register('MMM-Rest', {
                   if (match) {
                     result = condition['format']
                     if (condition['transform']) {
-                      // value = parseFloat(value)
+                      value = parseFloat(value)
                       value = eval(condition['transform'])
                     }
                     break
@@ -179,7 +179,7 @@ Module.register('MMM-Rest', {
                 else {
                   result = condition['format']
                   if (condition['transform']) {
-                    // value = parseFloat(value)
+                    value = parseFloat(value)
                     value = eval(condition['transform'])
                   }
                   break
