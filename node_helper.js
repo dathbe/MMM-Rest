@@ -7,9 +7,13 @@
 
 const Log = require('logger')
 const NodeHelper = require('node_helper')
-const undici = require('undici')
+const { Agent, fetch } = require('undici')
 
-const insecureAgent = new undici.Agent({ connect: { rejectUnauthorized: false } })
+const insecureAgent = new Agent({
+  connect: {
+    rejectUnauthorized: false,
+  },
+})
 
 module.exports = NodeHelper.create({
   start: function () {
@@ -17,21 +21,23 @@ module.exports = NodeHelper.create({
   },
 
   async getData(payload) {
-    if (payload.allowSelfSignedCerts == true && payload.url.startsWith('https://')) {
-      var agent = insecureAgent
+    const isInsecure = payload.allowSelfSignedCerts === true && payload.url.startsWith('https://')
+
+    const fetchOptions = {
+      method: 'GET',
+    }
+
+    if (isInsecure) {
+      fetchOptions.dispatcher = insecureAgent
       Log.debug(`${payload.url} - insecure`)
     }
     else {
-      agent = undefined
       Log.debug(`${payload.url} - secure`)
     }
     try {
       const url = payload.url
-      const response = await fetch(url, {
-        method: 'GET',
-        dispatcher: agent,
-      })
-      var data = await response.text()
+      const response = await fetch(url, fetchOptions)
+      let data = await response.text()
       data = data.replace(/\n+$/, '')
       this.sendSocketNotification('MMM_REST_RESPONSE', {
         id: payload.id,
