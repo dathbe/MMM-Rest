@@ -17,6 +17,7 @@ npm ci --omit=dev
 ```
 Dependencies:
 - [sprintf-js](https://www.npmjs.com/package/sprintf-js)
+- [undici](https://www.npmjs.com/package/undici)
 
 Note: `request` dependency was removed with 2025-11-17 release.
 
