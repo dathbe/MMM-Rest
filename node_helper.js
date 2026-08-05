@@ -7,47 +7,58 @@
 
 const Log = require('logger')
 const NodeHelper = require('node_helper')
-const { Agent, fetch } = require('undici')
-
-const insecureAgent = new Agent({
-  connect: {
-    rejectUnauthorized: false,
-  },
-})
+const https = require('https')
+const http = require('http')
+const crypto = require('crypto')
 
 module.exports = NodeHelper.create({
   start: function () {
     Log.log('Starting node_helper for: ' + this.name)
   },
 
-  async getData(payload) {
-    const isInsecure = payload.allowSelfSignedCerts === true && payload.url.startsWith('https://')
+  getData(payload) {
+    const urlString = payload.url
+    const isHttps = urlString.startsWith('https://')
+    const allowInsecure = payload.allowSelfSignedCerts === true && isHttps
 
-    const fetchOptions = {
+    const client = isHttps ? https : http
+
+    const options = {
       method: 'GET',
     }
 
-    if (isInsecure) {
-      fetchOptions.dispatcher = insecureAgent
-      Log.debug(`${payload.url} - insecure`)
+    if (allowInsecure) {
+      options.rejectUnauthorized = false
+      // Workaround for OpenHAB backend TLS 1.3 decode/length mismatch bugs:
+      // This forces the client connection to gracefully negotiate or drop problematic TLS 1.3 tickets if necessary
+      options.secureOptions = crypto.constants.SSL_OP_NO_TLSv1_3 | crypto.constants.SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION
+      Log.debug(`${urlString} - insecure (self-signed certs & OpenHAB TLS workaround allowed)`)
+    } else {
+      Log.debug(`${urlString} - secure`)
     }
-    else {
-      Log.debug(`${payload.url} - secure`)
-    }
-    try {
-      const url = payload.url
-      const response = await fetch(url, fetchOptions)
-      let data = await response.text()
-      data = data.replace(/\n+$/, '')
-      this.sendSocketNotification('MMM_REST_RESPONSE', {
-        id: payload.id,
-        data: data,
-        tableID: payload.tableID,
+
+    const req = client.request(urlString, options, (res) => {
+      let data = ''
+
+      res.on('data', (chunk) => {
+        data += chunk
       })
-    }
-    catch (error) {
-      Log.error('[MMM-Rest] Could not load data.', error)
-    }
+
+      res.on('end', () => {
+        data = data.replace(/\n+$/, '')
+        this.sendSocketNotification('MMM_REST_RESPONSE', {
+          id: payload.id,
+          data: data,
+          tableID: payload.tableID,
+        })
+      })
+    })
+
+    req.on('error', (error) => {
+      Log.error('[MMM-Rest] Could not load data or TLS handshake failed.', error)
+    })
+
+    req.end()
   },
 
   socketNotificationReceived: function (notification, payload) {

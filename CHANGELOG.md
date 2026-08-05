@@ -2,6 +2,12 @@
 
 Notable changes to this project will be documented in this file.
 
+## [2026-08-05](https://github.com/dathbe/MMM-Rest/compare/2026-04-04...2026-08-05)
+
+- Remove `undici` dependency
+- Update dependencies
+- Lint
+
 ## [2026-04-04](https://github.com/dathbe/MMM-Rest/compare/2026-03-07...2026-04-04)
 
 - Update dependencies

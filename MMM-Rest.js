@@ -136,10 +136,9 @@ Module.register('MMM-Rest', {
                   this.debugmsg('MMM-Rest: range defined: ', condition['range'])
                   var min = condition['range'][0]
                   var max = condition['range'][1]
-                  var match = false
                   if (typeof min != 'undefined') {
                     if (parseFloat(value) >= min) {
-                      match = true
+                      var match = true
                     }
                     else {
                       match = false
