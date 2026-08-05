@@ -17,9 +17,8 @@ npm ci --omit=dev
 ```
 Dependencies:
 - [sprintf-js](https://www.npmjs.com/package/sprintf-js)
-- [undici](https://www.npmjs.com/package/undici)
 
-Note: `request` dependency was removed with 2025-11-17 release.
+Note: `request` dependency was removed with 2025-11-17 release.  `undici` was removed with the 2026-08-05 release.
 
 ## Updating the module
 
@@ -104,7 +103,7 @@ To use this module, add it to the modules array in the `config/config.js` file:
       ['Solar Production','','@7'],
     ],
   },
-}
+},
 ```
 
 ## Configuration options
